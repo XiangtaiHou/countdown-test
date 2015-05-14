@@ -1,0 +1,91 @@
+<html>
+	<head>
+		<title>Timetest233</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width">
+
+  <script src="//code.jquery.com/jquery.js"></script>
+
+<script>
+
+window.setTimeout("Tick()", 1000);
+
+function Tick() {
+window.setTimeout("Tick()", 1000);
+}
+
+var Timer;
+var TotalSeconds;
+
+
+function CreateTimer(TimerID, Time) {
+Timer = document.getElementById(TimerID);
+TotalSeconds = Time;
+
+UpdateTimer()
+window.setTimeout("Tick()", 1000);
+}
+
+function Tick() {
+if (TotalSeconds <= 0) {
+alert("Time's up!")
+return;
+}
+TotalSeconds -= 0.5;
+UpdateTimer()
+window.setTimeout("Tick()", 1000);
+}
+
+function UpdateTimer() {
+var Seconds = TotalSeconds;
+
+var Days = Math.floor(Seconds / 86400);
+Seconds -= Days * 86400;
+
+var Hours = Math.floor(Seconds / 3600);
+Seconds -= Hours * (3600);
+
+var Minutes = Math.floor(Seconds / 60);
+Seconds -= Minutes * (60);
+
+
+var TimeStr = ((Days > 0) ? Days + " days " : "") + LeadingZero(Hours) + ":" + LeadingZero(Minutes) + ":" + LeadingZero(Seconds)
+Timer.innerHTML = TotalSeconds;
+}
+
+function LeadingZero(Time) {
+
+return (Time < 10) ? "0" + Time : + Time;
+
+}
+
+</script>
+<style>
+	
+#time {
+	/*height:80px;*/
+	width:280px;
+	padding-top: 200px;
+	margin: auto;
+	font-size: 80px;
+	font-weight:bolder;
+}
+
+</style>
+
+
+		
+	</head>
+	<body>
+<div id='time'>
+<div id='timer' >
+</div>
+</div>
+<script type="text/javascript">window.onload = CreateTimer("timer", 900);</script>
+
+
+
+	</body>
+</html>
